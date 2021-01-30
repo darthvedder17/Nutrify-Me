@@ -1,0 +1,102 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+
+    link(rel='stylesheet' href='../stylesheets/home.css')
+  body
+    header
+      nav.navbar.navbar-default.navbar-fixed-top.navbar-inner
+        .container-fluid
+          // Brand and toggle get grouped for better mobile display
+          .navbar-header
+            button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand.brand(href='#') NutrifyMe
+          // Collect the nav links, forms, and other content for toggling
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='/dashboard') Dashboard
+              li
+                a(href='#about') About
+              li
+                a(href='/meals') Add Meal
+              li
+                a(href='/logout') Logout
+          // /.navbar-collapse
+          // /.container-fluid
+      a(name='home')
+      .container-fluid
+        .more-space.row
+          .col-md-12
+            .text-center.intro
+              h1 Hello there,
+              
+              h4.red Welcome to the Nutrition and Calorie Tracking App
+    // --ABOUT US--
+    #startchange.about-us
+      a(name='about')
+      .container-fluid
+        .row.text-center
+          .descript.col-xs-12.col-sm-12.col-md-12
+            h1 ABOUT US
+            p.about-us-p
+              At NutrifyMe believes in healthy practices and encourage our users not to follow crash, starvation diets, and instead opt for healthy weight loss, weight gain and muscle building. Once a user goes Premium, our dieticians understand the lifestyle challenges, food preferences, allergies, and other key details to create a personalized diet plan that fits in their lifestyle. 
+    .break1.container-fluid.text-center
+      h3 Come connect with us!
+    .contact.text-center
+      a(name='contact')
+      .container-fluid
+        .row
+          .col-xs-12.col-sm-12.col-md-12.text-center
+            h1 CONTACT
+        .row
+          .col-xs-12.col-sm-12.col-md-12
+            h2 Connect with me at: 
+            p sshaurya@gmail.com
+            br
+            br
+            h3 Or, you could get in touch with me on social media
+        .row
+          .icon.col-xs-6.col-sm-6.col-md-6
+            a(href='https://www.linkedin.com/in/shoryasharma/')
+              i.fa.fa-linkedin
+          .icon.col-xs-6.col-sm-6.col-md-6
+            a(href='https://github.com/darthvedder17')
+              i.fa.fa-github
+    footer
+      .container-fluid
+        .row
+          .text-center.go-up-icon.col-xs-12.col-sm-6.col-md-6
+            a(href='#home')
+              i.fa.fa-angle-up
+          .col-xs-12.col-sm-6.col-md-6
+            p Shaurya Sharma. All Rights Reserved
+
+
+  script.
+    $(document).ready(function() {
+      console.log('Working Home Page')
+      var scroll_start = 0;
+      var startchange = $('#startchange');
+      var offset = startchange.offset();
+      if (startchange.length) {
+        $(document).scroll(function() {
+          scroll_start = $(this).scrollTop();
+          if (scroll_start > offset.top) {
+            $(".navbar-default").css('background-color', '#c1292e');
+          } else {
+            $('.navbar-default').css('background-color', 'transparent');
+          }
+        });
+      }
+    });

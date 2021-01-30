@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='../stylesheets/registration.css')
+    script(src='http://code.jquery.com/jquery-3.3.1.min.js')
+
+    script(src='../javascripts/registration.js')
+
+  body
+    .container
+      .register-form
+        
+        h1 Register
+        
+        form(role="form",method="post",action="/#")
+          .form-group
+                   .clearalert.alert-danger(role='alert', id="msgDiv")
+          
+          input(type='text' id='fname' placeholder='First Name')
+          input(type="text" id="lname" placeholder="Last Name")
+          input(type="password" id="password" placeholder="Enter password")
+          input(type="password" id="password2" placeholder="Confirm password") 
+          input(type="number" id="calorie" placeholder="Calorie limit") 
+          input(type="text" id="phone" placeholder="Enter cellphone number") 
+          input(type="email" id="email" placeholder="Enter email") 
+          input(type="text"  id="username" placeholder="Enter username") 
+
+
+
+          button(type='e' id='signup') Create Account
+        p.loginP
+          | Already have an account? 
+          a(href="/") Sign In
+

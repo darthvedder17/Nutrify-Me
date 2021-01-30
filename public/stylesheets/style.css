@@ -1,0 +1,133 @@
+@import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+.center {
+  margin: 1em 0;
+  min-width: 900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.center tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.center th {
+  display: none;
+}
+.center td {
+  display: block;
+}
+.center td:first-child {
+    
+    padding-top: .5em;
+}
+.center td:last-child {
+  padding-bottom: .5em;
+}
+.center td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 9.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .center td:before {
+    display: none;
+  }
+}
+.center th, .center td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .center th, .center td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .center th:first-child, .center td:first-child {
+    padding-left: 0;
+  }
+  .center th:last-child, .center td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #34495E;
+}
+
+.center {
+  background:#3D9970;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+}
+.center tr {
+  border-color: #46627f;
+}
+.center th, .center td {
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .center th, .center td {
+    padding: 1em !important;
+  }
+}
+.center th, .center td:before {
+  color: #dd5;
+}
+
+
+button{
+
+    text-transform: uppercase;
+    width: 150px;
+    height: 25px;
+    border-radius: 20px;
+    font-size: 12px;
+    display: block;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 24px;
+    color: #efefef;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(89.18deg, #E770FE 44.7%, #CF58F6 81.61%);
+    outline: none;
+
+}
+
+
+progress {
+    display: block; /* default: inline-block */
+    width: 300px;
+    margin: 2em auto;
+    padding: 4px;
+    height: 40px;
+    border: 0 none;
+    background: #444;
+    border-radius: 14px;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+  }
+
+#mealDate{
+
+
+    padding-top: 100px ;
+    padding-bottom: 50px;
+}
+
+#maxCalorieReached{
+    padding: 20px 20px;
+    font-size:50px ;
+    text-align: center;
+}

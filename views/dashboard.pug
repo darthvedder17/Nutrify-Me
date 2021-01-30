@@ -1,0 +1,165 @@
+html
+  head
+    title Meal Panel
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+    link(rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
+    link(rel='stylesheet' href='/resources/demos/style.css')
+    script(src='https://code.jquery.com/jquery-1.12.4.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    link(rel='stylesheet' href='../stylesheets/home.css')
+    link(rel='stylesheet' href='../stylesheets/meals.css')
+    link(rel="stylesheet" type="text/css" href="../stylesheets/style.css")
+
+  body
+    header
+      nav.navbar.navbar-default.navbar-fixed-top.navbar-inner
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand.brand(href='#') NutrifyMe
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='/home') Home
+              li
+                a(href='/meals') Add meals
+              li
+                a(href='/') Logout
+      form(method='post' action='/getToday' autocomplete='off')
+        .addmealform
+          
+        input#mealDate(type='date' name='mealDate' required='')
+        input(type='submit' value='Fetch' style='height:25px; width:80px; background-color:white')
+      #totalCalorie
+        
+        h1#maxCalorieReached(style='color:red')
+      
+      progress#progressBar(max='100' value='0')
+      #dishes
+        table#mealTable.center
+      script.
+        var daysMeals = !{JSON.stringify(meals)};
+        console.log(daysMeals);
+        var mealDate = !{JSON.stringify(mealDate)};
+        var calorie = !{JSON.stringify(totalCalorie)};
+        document.getElementById("mealDate").value = mealDate;
+        let totalCalorie = 0;
+        for (var i = 0; i < daysMeals.length; i++) {
+        if(daysMeals[i].mealDate == mealDate){
+        let tr1 = document.createElement("tr");
+        let td1 = document.createElement("td");
+        let td1txt = document.createTextNode(daysMeals[i].mealName);
+        td1.classList.add("capitalize");
+        td1.append(td1txt);
+        let td2 = document.createElement("td");
+        let td2txt = document.createTextNode(daysMeals[i].mealDescription);
+        td2.classList.add("capitalize");
+        td2.append(td2txt);
+        let td3 = document.createElement("td");
+        let td3txt = document.createTextNode(daysMeals[i].mealCalories);
+        totalCalorie += parseFloat(daysMeals[i].mealCalories);
+        td3.append(td3txt);
+        let td4 = document.createElement("td");
+        let button1 = document.createElement("button");
+        button1.setAttribute("id", "button1");
+
+        button1.style.backgroundColor = "lightblue";
+        let button1txt = document.createTextNode("remove");
+        button1.append(button1txt);
+        let button2 = document.createElement("button");
+        
+        button2.style.backgroundColor = "lightblue";
+        let button2txt = document.createTextNode("Edit");
+        button2.append(button2txt);
+        td4.append(button2);
+        td4.append(button1);
+        tr1.append(td1);
+        tr1.append(td2);
+        tr1.append(td3);
+        tr1.append(td4);
+        button1.setAttribute("id",i);
+        button1.setAttribute("onclick","deleteMealFunc()");
+        button2.setAttribute("id",i);
+        button2.setAttribute("onclick","editMealFunc()");
+        document.getElementById("mealTable").append(tr1);
+        }
+        }
+        totalCalorie = Math.ceil(totalCalorie*100)/100;
+        let div1 = document.createElement("div");
+        let div1txt = document.createTextNode(totalCalorie);
+        let div2txt = document.createTextNode(calorie);
+        let div3txt = document.createTextNode("/");
+        //- div1.append(div1txt);
+        //- div1.append(div3txt);
+        //- div1.append(div2txt);
+        if ((Math.ceil((totalCalorie/calorie*100)*100)/100)>100){
+        document.getElementById("maxCalorieReached").textContent = "MAX LIMIT REACHED";
+        }
+        else{
+        document.getElementById("maxCalorieReached").textContent = "";
+        }
+        document.getElementById("totalCalorie").append(div1);
+        document.getElementById("progressBar").value = Math.ceil((totalCalorie/calorie*100)*100)/100;
+        function deleteMealFunc(){
+        let id = event.target.id;
+        let n = daysMeals.length;
+        if(id<n){
+        let finalMeals = [];
+        for(let i=0; i<n;i++){
+        if (String(i) == id){
+        }
+        else{
+        finalMeals.push(daysMeals[i]);
+        }
+        }
+        fetch("/meals/delete",{
+        method : 'POST',
+        headers : {
+        'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify(finalMeals)
+        })
+        location.reload();
+        }
+        }
+        function editMealFunc(){
+        let id = event.target.id;
+        let n = daysMeals.length;
+        let changeDate;
+        let changeDescription;
+        let changeCalorie;
+        let changeType;
+        if(id<n){
+        let finalMeals = [];
+        for(let i=0; i<n;i++){
+        if (String(i) == id){
+        changeDate = daysMeals[i].mealDate;
+        changeDescription = daysMeals[i].mealDescription;
+        changeCalorie = daysMeals[i].mealCalories;
+        changeType = daysMeals[i].mealName;
+        }
+        else{
+        finalMeals.push(daysMeals[i]);
+        }
+        }
+        fetch("/meals/edit",{
+        method: 'POST',
+        headers: {
+        'Content-Type' : 'application/json',
+        'changeDate' : changeDate,
+        'changeDescription' : changeDescription,
+        'changeType' : changeType,
+        'changeCalorie' : changeCalorie
+        },
+        body : JSON.stringify(finalMeals)
+        });
+        location.href = "/meals";
+        }
+        }
