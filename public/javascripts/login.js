@@ -4,10 +4,7 @@ $(function(){
         event.preventDefault();
         var username   = $("#username").val();
         var password   = $("#password").val();
-        // console.log(username);
-        // console.log(lname);
-//         console.log(JSON.stringify({ fname: fname, lname: lname, password: password, password: password2, calories_per_day: calories_per_day, phone: phone, email: email, username:username}),
-// )
+      
 
         if(!username){ 
             $("#msgDiv").show().html("Username is required");
@@ -37,7 +34,7 @@ $(function(){
                         }
                         else if(data.success === true)
                         {   
-                            location.href = "/home"
+                            location.href = "/home/"
 
 
                         }
