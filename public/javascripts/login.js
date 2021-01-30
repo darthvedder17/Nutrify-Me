@@ -34,7 +34,7 @@ $(function(){
                         }
                         else if(data.success === true)
                         {   
-                            location.href = "/home/"
+                            location.href = "https://nutrify-me.herokuapp.com/home"
 
 
                         }
