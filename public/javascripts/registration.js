@@ -38,7 +38,7 @@ $(function(){
                             $("#msgDiv").html(errors).show();
                         }else{
                             $("#msgDiv").removeClass('alert-danger').addClass('alert-success').html('SUCCESS').show(); 
-                            location.href = "http://127.0.0.1:5000/"
+                            location.href = "/"
 
                         }
 
