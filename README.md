@@ -5,4 +5,4 @@ User can fetch meals according to date.
 User can edit and delete meals by fetching calories from nutrionix API.
 
 You can check out the demo here  :
-  ``` https://nutrify-me.herokuapp.com/ ```
+  https://nutrify-me.herokuapp.com/
